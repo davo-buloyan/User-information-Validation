@@ -4,46 +4,69 @@
 
         <div class="form-group col-md-12">
           <label for="firstName">First Name</label>
-          <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="">
+          <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid':  f.firstName.errors }" id="firstName" placeholder="">
+          <div *ngIf="f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+        </div>
         </div>
 
         <div class="form-group col-md-12">
           <label for="lastName">Last Name</label>
-          <input type="text" formControlName="lastName" class="form-control"id="lastName"  placeholder="">
+          <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid':  f.lastName.errors }" id="lastName"  placeholder="">
+          <div *ngIf="f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+        </div>
         </div>
 
 
       <div class="form-group col-md-12">
         <label for="inputEmail4">Email</label>
-        <input type="email" formControlName="email" class="form-control" id="inputEmail4">
+        <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': f.email.errors }" id="inputEmail4">
+        <div *ngIf="f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+      </div>
       </div>
 
 
         <div class="form-group col-md-12">
           <label for="country">Country</label>
-          <select id="country" formControlName="country" class="form-control">
-            <option  >Choose...</option>
+          <select id="country" formControlName="country" [ngClass]="{ 'is-invalid': f.country.errors }" class="form-control">
+
             <option *ngFor="let item of countres" [value]="item.id">{{item.name}}</option>
+
           </select>
+          <div *ngIf="f.country.errors" class="invalid-feedback">
+            <div *ngIf="f.country.errors.required">Country is required</div>
+        </div>
+
         </div>
 
 
         <div class="form-group col-md-12">
           <label for="city">City</label>
-          <select id="city" formControlName="city" class="form-control">
+          <select id="city" formControlName="city" [ngClass]="{ 'is-invalid': f.city.errors }" class="form-control">
             <option  *ngFor="let item of filteredCities" [value]="item.id" >{{item.name}}</option>
           </select>
+          <div *ngIf="f.city.errors" class="invalid-feedback">
+            <div *ngIf="f.country.errors.required">Country is required</div>
+        </div>
         </div>
 
       <div class="form-group col-md-12">
         <label for="inputPassword4">Password</label>
-        <input type="password" formControlName="password" class="form-control" id="inputPassword4">
+        <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': f.password.errors }" class="form-control" id="inputPassword4">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
       </div>
 
       <div class="form-group col-md-12">
         <label for="inputPassword4">Confirm Password</label>
-        <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword">
+        <input type="password" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': f.confirmPassword.errors }" class="form-control" id="confirmPassword">
       </div>
+      <!-- <div *ngIf="f.confirmPassword.errors" [ngClass]="{ 'is-invalid': f.confirmPassword.errors }"  class="invalid-feedback"> -->
+        <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+    <!-- </div> -->
     </div>
 
     <div class="form-group">

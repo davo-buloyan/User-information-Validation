@@ -18,6 +18,7 @@ import { MustMatch } from "../../shared/must-match.validator";
 })
 export class AddCustomerComponent implements OnInit {
   @Input() customer: Custumer;
+  submitted = false;
   public form: FormGroup;
   countryFormControl = new FormControl();
 
@@ -45,9 +46,9 @@ export class AddCustomerComponent implements OnInit {
     { this.formValidation() }
   public formValidation(): void {
     this.form = this.fb.group({
-      firstName: ['Jhon', [Validators.required, Validators.maxLength(50)]],
-      lastName: ['Doe', [Validators.required, Validators.maxLength(50)]],
-      email: ['Jon@gmail.com', [Validators.required, Validators.email]],
+      firstName: ['', [Validators.required, Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.email]],
       country: [null, Validators.required, ],
       city: [null, Validators.required],
       password: ['', Validators.compose([
@@ -77,7 +78,10 @@ export class AddCustomerComponent implements OnInit {
         return city.countryId === parseInt(countryId);
       });
     });
+
   }
+
+  get f() { return this.form.controls; }
 
   onSubmit(): void {
     this.custumerService.updateList(
