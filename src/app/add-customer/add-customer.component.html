@@ -32,31 +32,30 @@
           <label for="country">Country</label>
           <select id="country" formControlName="country" [ngClass]="{ 'is-invalid': f.country.errors }" class="form-control">
 
-            <option *ngFor="let item of countres" [value]="item.id">{{item.name}}</option>
+            <option *ngFor="let item of countres" [value]="[item.id, item.name]" >{{item.name}}</option>
 
           </select>
           <div *ngIf="f.country.errors" class="invalid-feedback">
             <div *ngIf="f.country.errors.required">Country is required</div>
         </div>
-
         </div>
 
 
         <div class="form-group col-md-12">
           <label for="city">City</label>
           <select id="city" formControlName="city" [ngClass]="{ 'is-invalid': f.city.errors }" class="form-control">
-            <option  *ngFor="let item of filteredCities" [value]="item.id" >{{item.name}}</option>
+            <option  *ngFor="let item of filteredCities" [value]="item.name" >{{ item.name  }}</option>
           </select>
           <div *ngIf="f.city.errors" class="invalid-feedback">
-            <div *ngIf="f.country.errors.required">Country is required</div>
+            <div *ngIf="f.city.errors.required">City is required</div>
         </div>
         </div>
 
       <div class="form-group col-md-12">
         <label for="inputPassword4">Password</label>
         <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': f.password.errors }" class="form-control" id="inputPassword4">
-        <div *ngIf="f.password.errors.required">Password is required</div>
-        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        <!-- <div *ngIf="f.password.errors.required">Password is required</div>
+        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
       </div>
 
       <div class="form-group col-md-12">
@@ -64,8 +63,8 @@
         <input type="password" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': f.confirmPassword.errors }" class="form-control" id="confirmPassword">
       </div>
       <!-- <div *ngIf="f.confirmPassword.errors" [ngClass]="{ 'is-invalid': f.confirmPassword.errors }"  class="invalid-feedback"> -->
-        <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
-        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+        <!-- <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div> -->
     <!-- </div> -->
     </div>
 
